@@ -1,0 +1,84 @@
+item {
+  id: 1
+  name: "Plastic film"
+}
+item {
+  id: 2
+  name: "Clear plastic bottle"
+}
+item {
+  id: 3
+  name: "Other plastic"
+}
+item {
+  id: 4
+  name: "Other plastic wrapper"
+}
+item {
+  id: 5
+  name: "Drink can"
+}
+item {
+  id: 6
+  name: "Plastic bottle cap"
+}
+item {
+  id: 7
+  name: "Plastic straw"
+}
+item {
+  id: 8
+  name: "Broken glass"
+}
+item {
+  id: 9
+  name: "Styrofoam piece"
+}
+item {
+  id: 10
+  name: "Disposable plastic cup"
+}
+item {
+  id: 11
+  name: "Glass bottle"
+}
+item {
+  id: 12
+  name: "Pop tab"
+}
+item {
+  id: 13
+  name: "Other carton"
+}
+item {
+  id: 14
+  name: "Normal paper"
+}
+item {
+  id: 15
+  name: "Metal bottle cap"
+}
+item {
+  id: 16
+  name: "Plastic lid"
+}
+item {
+  id: 17
+  name: "Paper cup"
+}
+item {
+  id: 18
+  name: "Corrugated carton"
+}
+item {
+  id: 19
+  name: "Aluminium foil"
+}
+item {
+  id: 20
+  name: "Single-use carrier bag"
+}
+item {
+  id: 21
+  name: "Other plastic bottle"
+}
