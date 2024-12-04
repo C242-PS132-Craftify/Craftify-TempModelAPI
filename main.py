@@ -5,12 +5,27 @@ import cv2
 from flask_cors import CORS
 import pandas as pd
 from db_conn import get_data
+import threading
+import regex as re
+
+model = None
+detect_fn = None
+model_lock = threading.Lock()
+
+def load_model():
+    global model, detect_fn
+    with model_lock:
+        if model is None:
+            print('Loading Model........')
+            model = tf.saved_model.load('model/saved_model')
+            detect_fn = model.signatures['serving_default']
+            
+load_model()
 
 app = Flask(__name__)
 CORS(app)
 
-model = tf.saved_model.load("model/saved_model")
-detect_fn = model.signatures["serving_default"]
+
 
 def load_label_map(label_map_path):
     with open(label_map_path, 'r') as f:
@@ -64,15 +79,20 @@ def recommend_project(labels, data2):
 
     mask = data2[labels].any(axis=1)
     recommend = data2[mask]
+    print(recommend)
 
     recommendations = []
 
     for index, row in recommend.iterrows():
-        project_name = row["project_name"],
-        project_img = row["project_img"],
+        project_name = str(row["project_name"]),
+        project_img = str(row["project_img"]),
+        project_name_clean = re.sub(r"[(),']", '', str(project_name))
+        project_img_clean = re.sub(r"[(),']", '', str(project_img))
+        # print(f'Project Name: {project_name}')
+        # print(f'Project IMG: {project_img}')
         recommendations.append({
-            "project_name": project_name,
-            "project_img": project_img,
+            "project_name": project_name_clean,
+            "project_img": project_img_clean,
         })
     return recommendations
 
@@ -116,9 +136,9 @@ def get_project(project_name=None):
                 project_recipe.append(steps)
         response_data.append({
             "project_name": project["project_name"],
-            # "project_materials": project_materials,
+            "project_materials": project_materials,
             "project_img": project.get("project_img", ""),
-            # "project_recipe": project_recipe
+            "project_recipe": project_recipe
         })
 
     response = {
