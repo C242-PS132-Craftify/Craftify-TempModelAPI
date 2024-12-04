@@ -1,0 +1,48 @@
+item { 
+	name:"Drink can"
+	id:1
+}
+item { 
+	name:"Glass bottle"
+	id:2
+}
+item { 
+	name:"Other plastic bottle"
+	id:3
+}
+item { 
+	name:"Clear plastic bottle"
+	id:4
+}
+item { 
+	name:"Plastic bottle cap"
+	id:5
+}
+item { 
+	name:"Metal bottle cap"
+	id:6
+}
+item { 
+	name:"Other carton"
+	id:7
+}
+item { 
+	name:"Corrugated carton"
+	id:8
+}
+item { 
+	name:"Disposable plastic cup"
+	id:9
+}
+item { 
+	name:"Other plastic"
+	id:10
+}
+item { 
+	name:"Normal paper"
+	id:11
+}
+item { 
+	name:"Plastic straw"
+	id:12
+}
