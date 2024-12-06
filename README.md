@@ -9,7 +9,7 @@ python main.py
 ```
 
 # Usage
-To use the prediction API, send request to the URL where the Flask API is hosted (default is localhost:5000/predict). The prediction API expects akey "image" with the value of file of the image you want to predict. <\br>
+To use the prediction API, send request to the URL where the Flask API is hosted (default is localhost:5000/predict). The prediction API expects key "image" with the value of file of the image you want to predict. </br>
 Sample response is as shown below
 ```json
 {
