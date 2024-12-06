@@ -19,6 +19,7 @@ def load_model():
             print('Loading Model........')
             model = tf.saved_model.load('model/saved_model')
             detect_fn = model.signatures['serving_default']
+            print('Loaded!')
             
 load_model()
 
@@ -49,7 +50,10 @@ def load_label_map(label_map_path):
 
 label_map = load_label_map("model/label_map.pbtxt")
 
-data2 = get_data()
+try:
+    data2 = pd.read_csv('project.csv')
+except FileNotFoundError:
+    data2 = get_data()
 
 # data2 = pd.read_csv('jas.csv')
 
@@ -111,9 +115,9 @@ def get_project(project_name=None):
             print(f'project names: {project_names}')
 
     if not project_names:
-        return jsonify({"error": "No project names provided"}), 400
-
-    projects = data2[data2['project_name'].isin(project_names)]
+        projects = data2.copy()
+    else:
+        projects = data2[data2['project_name'].isin(project_names)]
 
     response_data = []
     for _, project in projects.iterrows():
@@ -149,6 +153,7 @@ def get_project(project_name=None):
 
 @app.route("/predict", methods=["POST"])
 def predict():
+    load_model()
     file = request.files["image"]
 
     image = cv2.imdecode(np.frombuffer(file.read(), np.uint8), cv2.IMREAD_COLOR)

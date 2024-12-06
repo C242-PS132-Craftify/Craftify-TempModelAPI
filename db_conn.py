@@ -79,4 +79,4 @@ def get_data():
 
 if __name__ == "__main__":
     df = get_data()
-    # df.to_csv('jas.csv')
+    df.to_csv('project.csv')
