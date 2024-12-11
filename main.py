@@ -55,27 +55,6 @@ try:
 except FileNotFoundError:
     data2 = get_data()
 
-# data2 = pd.read_csv('jas.csv')
-
-# def recommend_project(labels, data2):
-#     if isinstance(labels, str):
-#         labels = [labels]
-
-#     mask = data2[labels].any(axis=1)
-#     filtered_data = data2[mask]
-
-#     recommendations = []
-#     for _, row in filtered_data.iterrows():
-#         project_recipe = row.get("project_recipe", "")
-#         formatted_recipe = project_recipe.replace(". ", ".\n") if project_recipe else ""
-#         recommendations.append({
-#             "project_name": row["project_name"],
-#             # "project_materials": row.get("project_materials", ""),
-#             "project_img": row.get("project_img", ""),
-#             # "project_recipe": formatted_recipe
-#         })
-
-#     return recommendations
 
 def recommend_project(labels, data2):
     if isinstance(labels, str):
@@ -157,7 +136,6 @@ def predict():
     file = request.files["image"]
 
     image = cv2.imdecode(np.frombuffer(file.read(), np.uint8), cv2.IMREAD_COLOR)
-    resized_image = cv2.resize(image, (320, 320))
     input_tensor = tf.convert_to_tensor([image], dtype=tf.uint8)
 
     detections = detect_fn(input_tensor)
@@ -175,7 +153,7 @@ def predict():
             detected_label = detected_label.lower()
             detected_label = detected_label.replace(" ", "_")
             detected_label = ("plastic_bottle" if detected_label in {"other_plastic_bottle", "clear_plastic_bottle"} else detected_label)
-            detected_label = ("carton" if detected_label in {"other_carton", "corrugated_carton"} else detected_label)
+            detected_label = ("carton" if detected_label in {"other_carton", "corrugated_carton", "styrofoam_piece"} else detected_label)
             detected_labels.append(detected_label)
             detection_results.append({
                 "class": detected_label,

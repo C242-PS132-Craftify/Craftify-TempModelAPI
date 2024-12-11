@@ -1,25 +1,25 @@
 item { 
-	name:"Drink can"
+	name:"Other plastic bottle"
 	id:1
 }
 item { 
-	name:"Glass bottle"
+	name:"Clear plastic bottle"
 	id:2
 }
 item { 
-	name:"Other plastic bottle"
+	name:"Glass bottle"
 	id:3
 }
 item { 
-	name:"Clear plastic bottle"
+	name:"Plastic bottle cap"
 	id:4
 }
 item { 
-	name:"Plastic bottle cap"
+	name:"Metal bottle cap"
 	id:5
 }
 item { 
-	name:"Metal bottle cap"
+	name:"Drink can"
 	id:6
 }
 item { 
@@ -45,4 +45,8 @@ item {
 item { 
 	name:"Plastic straw"
 	id:12
+}
+item { 
+	name:"Styrofoam piece"
+	id:13
 }
