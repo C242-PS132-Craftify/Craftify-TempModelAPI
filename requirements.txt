@@ -8,3 +8,4 @@ protobuf==3.19.6
 regex==2024.11.6
 Requests==2.32.3
 tensorflow==2.10.1
+pillow==10.3.0

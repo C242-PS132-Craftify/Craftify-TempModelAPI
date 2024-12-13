@@ -7,6 +7,7 @@ import pandas as pd
 from db_conn import get_data
 import threading
 import regex as re
+from PIL import Image, ImageOps
 
 model = None
 detect_fn = None
@@ -62,7 +63,7 @@ def recommend_project(labels, data2):
 
     mask = data2[labels].any(axis=1)
     recommend = data2[mask]
-    print(recommend)
+    # print(recommend)
 
     recommendations = []
 
@@ -135,8 +136,11 @@ def predict():
     load_model()
     file = request.files["image"]
 
-    image = cv2.imdecode(np.frombuffer(file.read(), np.uint8), cv2.IMREAD_COLOR)
-    input_tensor = tf.convert_to_tensor([image], dtype=tf.uint8)
+    image = Image.open(file)
+    image = ImageOps.exif_transpose(image)
+    image_np = np.array(image)
+    
+    input_tensor = tf.convert_to_tensor(np.expand_dims(image_np, 0), dtype=tf.uint8)
 
     detections = detect_fn(input_tensor)
 
